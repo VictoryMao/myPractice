@@ -1,0 +1,51 @@
+<!Doctype html>
+<html>
+<head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhHyPySMyLZ0OyowZzXKfOmH8pvO5PaTs&sensor=true"></script>
+    <script>
+        function initialize()
+        {
+            var myCenter = new google.maps.LatLng(51.508742,-0.120850)
+            var mapProp = {
+                center: myCenter,
+                zoom:9,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var mapProp2 = {
+                center: myCenter,
+                zoom:9,
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            };
+            var mapProp3 = {
+                center: myCenter,
+                zoom:9,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            };
+            var mapProp4 = {
+                center: myCenter,
+                zoom:9,
+                mapTypeId: google.maps.MapTypeId.TERRAIN
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var map2 = new google.maps.Map(document.getElementById("googleMap2"),mapProp2);
+            var map3 = new google.maps.Map(document.getElementById("googleMap3"),mapProp3);
+            var map4 = new google.maps.Map(document.getElementById("googleMap4"),mapProp4);
+            var marker = new google.maps.Marker({
+                position:myCenter
+            })
+            marker.setMap(map2)
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div id="googleMap" style="width:400px;height:300px;"></div>
+<br>
+<div id="googleMap2" style="width:400px;height:300px;"></div>
+<br>
+<div id="googleMap3" style="width:400px;height:300px;"></div>
+<br>
+<div id="googleMap4" style="width:400px;height:300px;"></div>
+</body>
+</html>
