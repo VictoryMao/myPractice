@@ -1,0 +1,36 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server --open",
+    "note": "指示 webpack 'watch' 依赖图中的所有文件以进行更改。npm run watch 如果其中一个文件被更新，代码将被重新编译, 唯一的缺点是，为了看到修改后的实际效果，你需要刷新浏览器。 webpack-dev-server可以做到我们想要的功能",
+    "watch": "webpack --watch",
+    "server": "node server.js"
+  },
+  "sideEffects": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "note": "考虑到用 CLI 这种方式来运行本地的 webpack 不是特别方便 (即敲命令行：webpack) 我们可以设置一个快捷方式。在 package.json 添加一个 npm 脚本(npm script)：build: webpack,就可以用npm run build 命令来编译文件",
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.0",
+    "css-loader": "^1.0.1",
+    "csv-loader": "^3.0.2",
+    "express": "^4.16.4",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-dev-server": "^3.1.10",
+    "xml-loader": "^1.2.1"
+  }
+}

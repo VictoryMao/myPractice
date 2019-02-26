@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./YuGothM.ttc');
+    font-style: italic;
+}
+.hello{
+    font-family: MyFont;
+    color:red;
+    background:url("../../webpack1/src/1.png");
+    background-size:20px;
+}
