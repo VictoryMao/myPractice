@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>探索dataZoom属性的奥妙</title>
+    <style>
+        #chart{
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart"></div>
+    <script src="./echarts.js"></script>
+    <script>
+        option = {
+            dataZoom: [
+                {
+                    type: 'slider',
+                    show: true,
+                    xAxisIndex: [0],
+                    start: 0,
+                    end: 100,
+                    showDetail: true
+                },
+                {
+                    type: 'inside',
+                    xAxisIndex: [0],
+                    start: 0,
+                    end: 100
+                }
+            ],
+            xAxis: {type: 'value'},
+            yAxis: {type: 'value'},
+            series: {
+                type: 'bar',
+                data: [
+                    // 第一列对应 X 轴，第二列对应 Y 轴。
+                    [12, 24, 36],
+                    [90, 80, 70],
+                    [3, 9, 27],
+                    [1, 11, 111]
+                ]
+            }
+        }
+        function init () {
+            var chart = echarts.init(document.querySelector('#chart'))
+            chart.setOption(option)
+        }
+        init()
+    </script>
+</body>
+</html>
