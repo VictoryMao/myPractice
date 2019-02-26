@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>这样定义原型对象会更简单</title>
+</head>
+<body>
+<script>
+    //   Object.getPrototypeOf()方法返回[[Prototype]]的值
+    function Person () { }
+    console.log(new Person())     //   每创建一个函数，就会同时创建它的prototype对象，这个对象也会自动获得constructor属性。
+
+    let person = new Person()
+//    console.log(person.sayName())  //   报错    重写原型对象切断了现有原型与任何之前已经存在的对象实例之间的联系，它们引用的仍然是最初的原型
+
+
+
+    Person.prototype = {          //   其实是重写了默认的prototype对象， 然后我发现没看到constructor属性了， 跟书上说的不太一样，书上说只是指向改成了Object而已，不太懂
+        name: 'maomaomao',
+        age: 23,
+        sayName: function () {
+            console.log(this.name)
+        }
+    }
+    console.log(new Person())
+
+
+
+//    Person.prototype.constructor = Person      //     可以这样手动设置, 这样设置属性的话，属性的configurable、enumerable、writable 默认为 true, 就会被for in 枚举出来了
+
+
+
+    Object.defineProperty(Person.prototype, 'constructor', {  //    而通过Object.defineProperty方法定义的属性，默认那三个特性都是false
+//        get: function () {    //  这样就是定义访问器属性
+//            return Person
+//        }
+        value: Person
+    })
+    console.log(Object.getOwnPropertyDescriptor(Person.prototype, 'constructor'))
+    console.log(new Person())
+
+
+
+
+    //    手动设置以后for in 会把它枚举出来
+    let person1 = new Person()
+    for (a in person1) {
+        console.log(a + ':' + person1[a])     //   name: Person  age: 23  sayName: function...  (constructor: function...)有没有取决于上面是何种方式定义这个属性的
+    }
+</script>
+</body>
+</html>

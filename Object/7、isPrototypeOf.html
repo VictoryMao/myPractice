@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>isPrototypeOf方法</title>
+</head>
+<body>
+<script>
+//    虽然在所有实现中都无法访问到[[Prototype]], 但可以通过isPrototypeOf()方法来确定对象之间是否存在这种关系。就是说如果[[Prototype]]指向调用isPrototypeOf()方法的对象People.prototype, 返回true
+    function People () {
+    }
+    People.prototype.name = 'maomaomao'
+    People.prototype.sayName = function () {
+        console.log(this.name)
+    }
+    var people1 = new People()
+    console.log(People.prototype.isPrototypeOf(people1))  // 其实我感觉就是判断这个对象是不是通过构造函数new出来的
+</script>
+</body>
+</html>

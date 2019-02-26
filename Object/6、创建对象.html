@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>创建对象</title>
+</head>
+<body>
+<script>
+    //   工厂模式
+    function createPerson (name, age, job) {
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.job = job;
+        o.sayName = function () {
+            console.log(this.name)
+        }
+        return o      //    创建多个相似对象
+    }
+    console.log(person1 = createPerson('mao', '23', 'designer'))      //   会发现对象person1的constructor是 Object
+
+
+
+
+    //   构造函数模式
+    //   对比工厂模式 1、 没有显示地创建对象    2、 直接将属性和方法赋给了this对象    3、 没有return语句
+    //   缺点： 每个方法都要在每个实例上重新创建一遍，然而每个方法都完成同样的任务，这样是没有必要的
+    function Person (name, age, job) {
+        this.name = name
+        this.age = age
+        this.job = job
+        this.sayName = function () {
+            console.log(this.name)
+        }
+    }
+    let a1 = new Person('maomaomao', '23', 'x')    //   new 出一个新对象
+    let a2 = new Person('wanli', '20', 'x')
+    console.log(a1, a2)
+    console.log(a1.constructor, a2.constructor, a1 instanceof Person)       //    他们的构造函数都是上面的funciton Person(...){...}
+
+    Person('xxx')         //    任何函数，如果不通过new操作符调用，那么它跟普通函数不会有什么区别
+    sayName()            //  window.sayName()
+
+
+
+    //  原型模式
+    //  我们创建的每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，而这个对象的用途是可以包含可以由特定类型的所有实例共享的属性和方法。
+    //  按照字面意思来理解：prototype就是通过构造函数而创建的那个实例的原型对象
+    //  使用原型对象（包含所有实例共享的属性和方法）的好处是让所有对象对象实例共享它所包含的属性和方法
+
+    function People () {
+    }
+    People.prototype.name = 'maomaomao'
+    People.prototype.sayName = function () {
+        console.log(this.name)
+    }
+
+    //  只要创建一个新函数，就会为这个函数创建一个prototype属性（它是个指针），指向该函数的原型对象，而默认情况下所有原型对象会自动获得一个constructor属性，这个属性包含一个指向prototype属性所在函数的指针
+
+    //  创建自定义的构造函数之后，其原型对象默认只会取得constructor属性，至于其它方法，都是从Object继承而来的。
+
+    //  当new出一个实例后，该实例会有一个内部属性[[Prototype]](在ff/chrome/safari浏览器，每个对象都有_proto_属性，当然实例也是一个对象),它是个指针，它会指向构造函数的原型对象
+
+    //  -->原型对象是构造函数的，而实例会有一个内部属性[[Prototype]]指向构造函数的原型对象,而构造函数是有一个prototype属性指向它自己的原型对象，原型对象有一个constructor属性执行构造函数
+
+//                                                              constructor属性(people.prototype.constructor)
+//  实例的[[Prototype]]——————————————> 构造函数的原型对象————————————————————————> 构造函数(people)
+//                                                    <————————————————————————
+//                                                              prototype属性(people.prototype)
+
+    //  在js脚本中没有标准的方式访问[[Prototype]]，但ff/chrome/safari在每个对象上都支持一个属性_proto_
+
+
+
+//    原型模式优点：省略了为构造函数传递初始化参数这一环节，结果所有实例在默认情况下取得相同的属性值。
+//           缺点：所有属性共享会导致问题，如果说有一个属性是一个数组，那么所有的实例都会共享这个数组，此时如果其中一个原型.数组做的不是赋值操作（添加实例属性）而是，push这样改写，那么就会影响到原型对象
+//                这样对于需要独立属性的实例来说是不行的， 具体看13、创建对象2.html
+</script>
+</body>
+</html>

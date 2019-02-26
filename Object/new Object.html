@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+//        let person = new Object()                     //   Object是一个构造函数， 通过new Object 创建一个Object的实例
+//        console.log(Object.length)                    //  1
+//        person.name = 'mao'
+//        person.age = '23'
+//        person.job = 'fe'
+//        person.sayName = function () {                            //  公用属性
+//            console.log(this.name)
+//        }
+//        person.sayName()
+//
+//        //      通过对象字面量创建对象
+
+        let person = {
+            name: 'mao',
+            age: '23',
+            job: 'fe',
+            sayName: function () {
+                console.log(this.name)
+            }
+        };
+
+        Object.defineProperty(person, 'age', {
+            configurable: false,                //     是否可以删除属性
+            writable: true                    //      是否可以修改
+        });
+
+
+        Object.defineProperty(person, 'work', {       //    定义访问器属性
+            get: function () {
+                return this.job
+            },
+            set: function (str) {
+                if (str !== this.job) {
+                    this.job = str
+                }
+            }
+        })
+        delete person.age
+        person.age = 18;
+        person.work = 'fe'
+        console.log(person, person.work)
+
+        let descriptor1 = Object.getOwnPropertyDescriptor(person, 'work')
+        console.log(descriptor1)
+        let descriptor2 = Object.getOwnPropertyDescriptor(person, 'job')
+        console.log(descriptor2)
+
+
+
+
+
+        var book = {};
+        console.log('%c------------ 示例3：先设置 "数据属性" 后，然后设置 "访问属性"--------------','color:blue;');
+
+        Object.defineProperty(book,'color',{
+            configurable:true,
+            enumerable:true,
+            writable:true,
+            value:'light blue'
+        })
+        Object.defineProperty(book,'color',{
+            get: function(){
+                return this.value;
+            },
+            set: function(newValue){
+                this.value = newValue;
+            }
+        })
+
+        var descriptor3 = Object.getOwnPropertyDescriptor(book, "color");
+        console.log(descriptor3);
+
+
+        console.log('%c------------ 示例4：先设置 "访问属性" 后，然后设置 "数据属性" --------------','color:blue;');
+
+        Object.defineProperty(book,'price',{
+            configurable:true,
+            enumerable:true,
+            get: function(){
+                return this.value;
+            },
+            set: function(newValue){
+                this.value = newValue;
+            }
+        })
+        Object.defineProperty(book,'price',{
+            writable:true,
+            value:200
+        })
+        var descriptor4 = Object.getOwnPropertyDescriptor(book, "price");
+        console.log(descriptor4);
+    </script>
+</body>
+</html>

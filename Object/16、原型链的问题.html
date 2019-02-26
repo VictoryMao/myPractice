@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>原型链的问题(其实是在原型上引用类型属性会共享的问题)</title>
+</head>
+<body>
+<script>
+    //     ECMAScript中描述了原型链的概念，并将原型链作为实现继承的主要方法。 基本思想：利用原型让一个引用类型继承另一个引用类型的属性和方法。
+    //     回顾构造函数、原型和实例的关系：
+    //     每个构造函数都有一个原型对象(prototype)，原型对象包含一个指向构造函数的指针(constructor),而实例都包含一个指向原型对象的内部指针[[Prototype]]
+
+    //     基本模式
+    function SuperType () {
+        this.colors = ['red', 'yellow', 'blue']
+    }
+    function SubType () {
+    }
+    SubType.prototype = new SuperType()        //   在SubType的原型上会包含colors(它是一个引用类型的值),而原型上引用类型的值会被所有实例共享（这就是为什么要在构造函数中定义属性，而不是在原型上定义的原因）
+    var instance1 = new SubType()
+    instance1.colors.push('orange')
+//    instance1.colors = ["red", "yellow", "blue", "orange"]    //   当然这样是不会的
+    console.log(new SubType().colors)   //    共享了
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html !Doctype>
+<head>
+    <meta charset="utf-8"/>
+    <title>同时定义多个属性</title>
+</head>
+<body>
+<script>
+    //    IE8 是第一个实现Object.defineProperty()方法的浏览器版本，然而，这个版本的实现存在诸多限制： 只能在DOM对象上使用，而且只能创造访问器属性
+    //    IE9+支持Object.defineProperties()
+
+    //    Object.defineProperties => ES5新特性
+
+    //    在book上定义2个数据属性，一个访问器属性
+    var book = {}
+    Object.defineProperties(book, {
+        _year: {
+            value: 2014
+        },
+        edition: {
+            value: 1
+        },
+        year: {
+            get: function () {
+                console.log('你访问了访问器属性year')
+                return this._year
+            },
+            set: function (newValue) {
+                console.log('你修改了访问器属性year')
+                if (newValue > 2004) {
+                    this._year = newValue
+                    this.edition += newValue - 2004
+                }
+            }
+        }
+    })
+    console.log(book)
+</script>
+</body>
+</html>

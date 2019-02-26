@@ -1,0 +1,44 @@
+<html !Doctype>
+<head>
+    <meta charset="utf-8"/>
+    <title>读取属性的特性</title>
+</head>
+<body>
+<script>
+//   ES5新特性：Object.getOwnPropertyDescriptor(obj, property)     可以取得给定属性的描述符
+
+//   返回值是一个对象，如果
+//   是访问器属性，这个对象的属性有 configurable 、 enumerable 、 get 和 set ；如果是数据属性，这
+//   个对象的属性有 configurable 、 enumerable 、 writable 和 value
+
+    var book = {}
+    Object.defineProperties(book, {
+        _year: {
+            value: 2014
+        },
+        edition: {
+            value: 1
+        },
+        year: {
+            get: function () {
+                console.log('你访问了访问器属性year')
+                return this._year
+            },
+            set: function (newValue) {
+                console.log('你修改了访问器属性year')
+                if (newValue > 2004) {
+                    this._year = newValue
+                    this.edition += newValue - 2004
+                }
+            }
+        }
+    })
+    var descriptor = Object.getOwnPropertyDescriptor(book, '_year')
+    console.log(descriptor)     //    可以看到通过Object.definePropertise定义的数据属性默认 writable/configurable/enumerable都是false
+    console.log(Object.getOwnPropertyDescriptor(book, 'year'))
+    delete book._year
+    console.log(book)
+
+</script>
+</body>
+</html>

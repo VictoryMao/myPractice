@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Object.getPrototypeOf取得对象的原型</title>
+</head>
+<body>
+<script>
+    //   Object.getPrototypeOf()方法返回[[Prototype]]的值
+    function People () {
+    }
+    People.prototype.name = 'maomaomao'
+    People.prototype.sayName = function () {
+        console.log(this.name)
+    }
+    var people1 = new People()
+    people1.name = 'wanli'
+    console.log(people1)    //  对象实例本身
+    console.log(people1.name) //  'wanli'     //   先找实例本身，找不到了才会去原型对象上找
+    console.log(Object.getPrototypeOf(people1))  //   返回的是原型对象（People.prototype）
+    console.log(Object.getPrototypeOf(people1).name)  //   返回的是原型对象（People.prototype），读取属性时，会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象实例本身开始。
+                                                      //   如果在实例中找到了属性，就返回这个属性的值；如果没有找到，则继续搜索原型对象，如果找到，就返回这个属性的值。
+    console.log(Object.getPrototypeOf(people1).constructor)
+</script>
+</body>
+</html>

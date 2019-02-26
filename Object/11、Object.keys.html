@@ -1,0 +1,34 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Object.keys()返回一个包含所有可枚举属性的字符串数组</title>
+</head>
+<body>
+<script>
+    //  ES5新增特性  Object.keys()这个方法接收一个对象作为参数，返回一个包含所有可枚举属性的字符串数组
+    function People () {
+    }
+    People.prototype.name = 'maomaomao'
+    People.prototype.sayName = function () {
+        console.log(this.name)
+    }
+    let people1 = new People()
+    let people2 = new People()
+    people1.name = 'wanli'
+
+//  取决于传入的对象是实例对象还是原型对象
+    console.log(Object.keys(people1))              // ['name']               返回实例上所有可枚举的属性
+    console.log(Object.keys(people2))              //  []
+    console.log(Object.keys(People.prototype))    //   ['name', 'sayName']   返回原型对象上所有可枚举的属性
+
+
+//    for in  会把实例上和原型上的属性都枚举出来，如果原型上有和实例上相同的属性，他会被屏蔽掉
+    for (a in people1) {
+        console.log(a + ':' + people1[a])        //   name: wanli    sayName: .....
+    }
+    for (b in People.prototype) {
+        console.log(b + ':' + People.prototype[b])      //   name: maomaomao    sayName: .....
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>offsetLeft & offsetTop</title>
+    <style>
+        html,body{
+            width: 100%;height: 100%;
+        }
+        body{margin: 0;}
+        .wrap{
+            position: relative;
+            margin: 20px auto;
+            width: 400px;height: 320px;
+            border: 1px solid #cccccc;
+        }
+        .inner{
+            position: absolute;left: 60px;top: 60px;
+            width: 160px;height: 160px;
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    wrapper
+    <div class="inner">inner</div>
+
+</div>
+<script>
+    let wrap = document.querySelector('.wrap')
+    let inner = document.querySelector('.inner')
+
+
+    console.log('%c------------ 示例1：console.log() 与 console.dir() 打印结果 --------------','color:blue;');
+
+    console.log(inner)
+    console.dir(inner)
+
+    console.log('%c------------ 示例2：wrap.querySelector() --------------','color:blue;');
+
+    let inner_1 = wrap.querySelector('.inner')
+    console.log(inner_1)
+    console.dir(wrap)
+</script>
+</body>
+</html>

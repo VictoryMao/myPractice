@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>对象</title>
+    </head>
+    <body>
+        <script>
+            //   1、通过new Object 构造函数创建
+            let obj = new Object()
+            obj.name = 'maomaomao'
+            obj.age = 23
+            obj.sayName = function () {
+                console.log(this.name)   //   ==> person.name
+            }
+            //  2、对象字面量创建对象
+            let person = {
+                name: 'mao',
+                age: 23,
+                sayName: function () {
+                    console.log(this.name)
+                }
+            }
+        </script>
+    </body>
+</html>

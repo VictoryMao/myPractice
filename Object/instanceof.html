@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //     使用Object构造函数或对象字面量来创建的对象，当需要创建多个对象时，会产生很多重复的代码
+
+
+    //    工厂模式          封装用new创建一个 Object的过程, 但是每次返回的都是一个新的对象，所以person1并不等于person2
+    //                     相当于用的原材料都是一个工厂的，但是每次出厂都是不一样的2个东西。
+    function createPerson(name, age, job) {
+        let o = new Object()
+        o.name = name
+        o.age = age
+        o.job = job
+        o.sayName = function () {
+            console.log(this.name)
+        }
+        return o
+    }
+    let person1 = createPerson('mao', '23', 'rich')
+    let person2 = createPerson('yi', '18', 'handsome')
+    console.log('%c------------  工厂模式 person1 打印结果 --------------','color:green;');
+    console.log('%c------------  constructor是Object 打印结果 --------------','color:green;');
+    console.log(person1)
+    console.log('%c------------ 工厂模式  person2 打印结果 --------------','color:green;');
+    console.log('%c------------  constructor是Object 打印结果 --------------','color:green;');
+    console.log(person2)
+    console.log('%c------------  封装了new出一个 Object的过程,  每次返回的都是一个新的对象，所以person1并不等于person2打印结果 --------------','color:green;');
+    console.log(person1 == person2)
+    //     工厂模式其实和new Object一模一样吧，只是少了每次new的过程，其实每次返回的都是新的Object
+    //     我是这么理解的
+    //     除了省代码，它和new Object相比没有什么优点了吧。
+
+    //   之前看不懂各种模式相比于的优点，现在懂了
+
+
+
+    //    构造函数模式           没有显示创建对象，直接将属性和方法赋值给了this, 没有return
+
+    function Person(name, age, job) {                        //    构造函数
+        this.name = name
+        this.age = age
+        this.job = job
+        this.sayName = function () {
+            console.log(this.name)
+        }
+    }
+    let person3 = new Person('mao', 23, 'good')
+    console.log('%c------------  构造函数模式  person3 打印结果 --------------','color:green;');
+    console.log('%c------------  constructor是Person 打印结果 --------------','color:green;');
+    console.log(person3)
+    let person4 = new Person('yiyangqianxi', 18, 'very good')
+    console.log('%c------------  构造函数模式  person4 打印结果 --------------','color:green;');
+    console.log('%c------------  constructor是Person  person4 打印结果 --------------','color:green;');
+    console.log(person4)
+
+
+
+    //    instanceof.html                    检测对象类型
+    alert(person1 instanceof Object);  //true
+    alert(person3 instanceof Person);  //true
+    alert(person2 instanceof Object);  //true
+    alert(person4 instanceof Person);  //true
+
+
+</script>
+</body>
+</html>

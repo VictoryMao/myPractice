@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>创建对象</title>
+</head>
+<body>
+<script>
+    //   组合使用构造函数模式和原型模式：构造函数模式用于定义实例属性，而原型模式用于定义共享的属性和方法，还可以传递参数
+    function Person(name, age, job){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.friends = ["Shelby", "Court"];
+    }
+    Person.prototype = {
+        constructor : Person,
+        sayName : function(){
+            alert(this.name);
+        }
+    }
+    Person.prototype.sex = 'xxx'
+    Person.prototype.like = ['a', 'b']
+    var person1 = new Person("Nicholas", 29, "Software Engineer");
+    var person2 = new Person("Greg", 27, "Doctor");
+    person1.sex = 'female'    //  这样其实是相当于在这个实例上添加了一个属性
+//    person1.like = ['ba']
+    person1.like.push('ba')
+//    console.log(person1.sex, person2.sex)
+//    console.log(person1.like, person2.like)    // [ba]、[a,b]         如果是执行person1.like = ['ba']赋值操作，那么就是相当于在这个上添加实例属性，不会影响到原型对象
+    console.log(person1.like, person2.like)    // [a,b,ba]、[a,b,ba]  如果是执行person1.like.push('ba')不是赋值操作，那么就是相当于改变原型对象谁上的这个属性，就会影响原型对象
+    console.log(person1, person2)
+    person1.friends.push("Van");
+    console.log(person1.friends); //"Shelby,Count,Van"
+    console.log(person2.friends); //"Shelby,Count"
+    console.log(person1.friends === person2.friends); //false
+    console.log(person1.sayName === person2.sayName); //true
+
+
+    //   动态原型模式： 把所有信息都封装在了构造函数，而通过在构造函数中初始化原型（仅在必要的情况下），又保持了同时使用构造函数和原型的优点
+    //   ...
+
+</script>
+</body>
+</html>

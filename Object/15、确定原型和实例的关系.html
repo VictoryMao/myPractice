@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>确定原型和实例的关系</title>
+</head>
+<body>
+<script>
+    //     ECMAScript中描述了原型链的概念，并将原型链作为实现继承的主要方法。 基本思想：利用原型让一个引用类型继承另一个引用类型的属性和方法。
+    //     回顾构造函数、原型和实例的关系：
+    //     每个构造函数都有一个原型对象(prototype)，原型对象包含一个指向构造函数的指针(constructor),而实例都包含一个指向原型对象的内部指针[[Prototype]]
+
+    //     基本模式
+    function SuperType () {
+        this.property = true
+    }
+    SuperType.prototype.getSuperValue = function () {
+        return this.property
+    }
+    function SubType () {
+        this.subProperty = false
+    }
+    SubType.prototype = new SuperType()             //   实现继承的本质是重写原型对象，代之以一个新类型的实例， 新原型有作为实例所有有的全部属性和方法，而且内部还有一个[[Prototype]]指针
+    SubType.prototype.getSubValue = function () {   //   是不是想当于new SuperType().getSubValue(),感觉就像是在SuperType上的实例上添加了该方法
+        return this.subProperty
+    }
+    var instance = new SubType()
+
+    //  1、instanceof操作符    只要用这个操作符来测试实例与原型链中出现过的构造函数，就会返回true
+    console.log(instance instanceof Object)      //  true   可以说instance是Object的实例
+    console.log(instance instanceof SuperType)   //  true   可以说instance是SuperType的实例
+    console.log(instance instanceof SubType)     //  true   可以说instance是SubType的实例
+
+    //  2、isPrototypeOf()    只要是原型链中出现过的原型，都相当于是该原型链所派生的实例的原型
+    console.log(Object.prototype.isPrototypeOf(instance))
+    console.log(SuperType.prototype.isPrototypeOf(instance))
+    console.log(SubType.prototype.isPrototypeOf(instance))
+</script>
+</body>
+</html>

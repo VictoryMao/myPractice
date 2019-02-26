@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>in操作符，判断属性是不是属于这个对象</title>
+</head>
+<body>
+<script>
+    //   property in  object   只要通过这个对象能够访问到这个属性，那么就返回true, 无论该属性存在于实例中还是原型中
+    function People () {
+    }
+    People.prototype.name = 'maomaomao'
+    People.prototype.sayName = function () {
+        console.log(this.name)
+    }
+    let people1 = new People()
+    let people2 = new People()
+    people1.name = 'wanli'
+    console.log(people1)
+    console.log(people1.hasOwnProperty('name'))     //   true   只有属性存在于对象实例中时，才回返回true
+    console.log(name in people1)                    //   true
+    console.log(people2.hasOwnProperty('name'))     //   false
+    console.log(name in people2)                    //   true
+</script>
+</body>
+</html>

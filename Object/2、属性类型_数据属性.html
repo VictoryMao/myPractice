@@ -1,0 +1,54 @@
+<html !Doctype>
+    <head>
+        <meta charset="utf-8"/>
+        <title>属性类型</title>
+    </head>
+    <body>
+        <script>
+//            ECMAScript中有2种属性：数据属性和访问器属性
+//            1、 数据属性（包含一个数据值的位置）的 4个特性
+//            [[Configurable]]: 表示能否通过delete 删除属性从而重新定义属性，能否把属性修改为访问器属性。 该特性默认值为true
+//            [[Enumerable]]: 表示能否通过for-in循环返回属性。默认值为true
+//            [[Writable]]: 表示能否修改属性的值
+//            [[Value]]: 包含这个属性的数据值    默认为undefiend
+
+
+           let person = {}
+//         修改属性默认的特性     Object.defineProperty(obj, property, descriptor对象)方法      descriptor对象的属性必须是4个特性的其中一种
+//         在调用Object.defineProperty()方法时，如果不指定，configurable、enumerable、writable特性的默认值都是false
+//
+
+
+
+//        Object.defineProperty => ES5新特性
+
+
+
+           Object.defineProperty(person, 'name', {
+               configurable: false,
+               value: 'wanli',
+//               writable: true,          // 默认为false
+//               enumerable: true          默认为false
+           })
+            person.age = 23          //    通过这样方式定义的属性，默认configurable、enumerable、writable都是true
+            delete person.age        //    会发现可以删掉
+            delete person.name       //    删不掉这个属性
+            person.name = 'manli'
+            for (let i in person) {
+               console.log(person[i])
+            }
+           console.log(person.name)   //   默认是wanli，因为writable是false，写了writable：true后，就是manli了
+
+
+//         报错                   一旦把属性定义为不可配置的，就不能再把它变回可配置了， 此时除修改writable之外的特性，都会导致错误
+//            Object.defineProperty(person, 'name', {
+//                configurable: true,
+//                value: 'wanli'
+//            })
+
+
+//    IE8 是第一个实现Object.defineProperty()方法的浏览器版本，然而，这个版本的实现存在诸多限制： 只能在DOM对象上使用，而且只能创造访问器属性
+
+        </script>
+    </body>
+</html>
