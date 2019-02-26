@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=1200,initial-scale=.5">
+        <title>弄懂移动端</title>
+        <style>
+            div{
+                width:600px;
+                height:500px;
+                background:#f00;
+            }
+            .left{
+                float:left;
+            }
+            .right{
+                float:right;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="left">左边的块</div>
+        <div class="right">右边的块</div>
+        <!--
+             viewport:
+             iphone的默认viewport:980px, 是说得到一个网页后先将网页渲染在layout viewport里，如果页面的逻辑像素超过980px，则会出现滚动条,
+             这样做是保证让页面的排版正确，然后通过缩放让我们能在visual viewport 里看见(visual viewport的宽度，我自己理解就是设备逻辑像素比如iphone6:375)
+             以上的例子如果不手动设置viewport的话，可以开到980px的viewport放不下1200px的元素，是会出现滚动条的，而手动将viewport设置成1200px后，
+             layout viewport刚好能放下, 而visual viewport 也通过缩放在不影响布局的情况下让我们看。
+
+             initial-scale
+             上面的例子中的情况就是：如果说没有设置initial-scale的话，因为网页是放在了1200px的layout viewport里，为了让我们在visual viewport 能看见这个网页，
+             其实是把网页缩小到375/1200 = .3125倍,这样的话就能在visual viewport里看见整个网页了，而如果说把initial-scale手动设置成了>.3125, 就会出现滚动条，
+             值越大，网页就越大，而visual viewport 永远不变
+
+        -->
+    </body>
+</html>
