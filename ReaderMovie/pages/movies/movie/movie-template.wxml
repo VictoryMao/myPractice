@@ -1,0 +1,8 @@
+<import src="../stars/stars-template" />
+<template name="movie">
+  <view class="movie-container">
+    <image class="movie-img" src="{{coverImg}}"></image>
+    <text class="movie-text">{{title}}</text>
+    <template is="stars" data="{{score: score, star: star}}"></template>
+  </view>
+</template>

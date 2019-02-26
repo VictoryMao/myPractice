@@ -1,0 +1,12 @@
+<import src="movie-list/movie-list-template" />
+<import src="movie-grid/movie-grid-template" />
+<view class="container">
+  <view class="search">
+    <icon type="search" class="search-img" size="13" color="#405f80"></icon>
+    <input type="text" placeholder="怦然心动" placeholder-class="placeholder"
+    bindfocus="onBindFocus" bindchange="onBindChange" />
+  </view>
+  <view class="movies-template" wx:for="{{movieList}}" wx:key="index">
+    <template is="movie-list" data="{{...item}}"></template>
+  </view>
+</view>
