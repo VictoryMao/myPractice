@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="require.js"></script>
+    <script type="text/javascript">
+        require.config({
+            paths: {
+                'jquery': ["js/jquery", "http://libs.baidu.com/jquery/2.0.3/jquery"]   //    配置多个路径，第一个没有成功，加载第二个
+            }
+        })
+        require(["jquery", "js/a"], function ($) {   //   防止js加载阻塞页面渲染, 不会阻塞span标签的渲染
+            $(function (){
+                alert('load finished');
+            })
+        });
+    </script>
+</head>
+<body>
+<span>body</span>
+</body>
+</html>
