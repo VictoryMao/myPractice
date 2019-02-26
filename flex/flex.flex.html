@@ -1,0 +1,45 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>display: flex</title>
+        <style>
+            #box{
+                display:flex;
+                float:right;
+                width:200px;
+                height:200px;
+                border:1px solid #000;
+            }
+            .inner{
+                /*不设置的话默认高度等于父元素的高度*/
+                display:inline-block;
+                height:50px;
+                background:#ff0;
+                /*设置了flex布局以后，子元素的float失效*/
+                float:right;
+                /*设置了flex布局以后，vertical-align失效*/
+                vertical-align:middle;
+            }
+            #inline{
+                /*即使是行内元素，flex属性也让元素占满一行*/
+                display:flex;
+                /*即使是行内元素，inline-flex属性则不会*/
+                display:inline-flex;
+                background:#f00;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            lallala
+            <span class="inner">1</span>
+            <span class="inner">2</span>
+            <span class="inner">3</span>
+            <span class="inner">4</span>
+            <span class="inner">5</span>
+        </div>
+        <span id="inline">行内元素</span>
+        <span>另一个行内元素</span>
+    </body>
+</html>

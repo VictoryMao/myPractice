@@ -1,0 +1,38 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>display: box.property.align-items</title>
+    <style>
+        /*align-items属性定义项目在交叉轴上如何对其，交叉轴就是垂直方向*/
+        #box{
+            display:flex;
+            /*交叉轴的起点对齐*/
+            align-items:flex-start;
+            /*交叉轴的终点对齐*/
+            align-items:flex-end;
+            /*交叉轴的中点对齐*/
+            align-items:center;
+            /*项目的*/
+            align-items:baseline;
+            /*交叉轴的中点对齐*/
+            align-items:center;
+            /*flex-direction: column;*/
+            height:200px;
+            border:1px solid #000;
+        }
+        .inner{
+            border:1px solid #f00;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="inner">1</div>
+    <div class="inner">2</div>
+    <div class="inner">3</div>
+    <div class="inner">4</div>
+    <div class="inner">5</div>
+</div>
+</body>
+</html>

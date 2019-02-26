@@ -1,0 +1,35 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>display: box.property.flex-wrap</title>
+    <style>
+        /*默认情况下，项目都排在一条线上。flex-wrap属性定义，如果一条轴线排不下，如何换行*/
+        #box{
+            display:flex;
+            /*默认，不换行,不会让超出父元素的*/
+            flex-wrap:nowrap;
+            /*换行，第一行在左上方*/
+            flex-wrap: wrap;
+            /*换行，第一行在左下方*/
+            flex-wrap:wrap-reverse;
+            width:200px;
+            height: 200px;
+            border:1px solid #000;
+        }
+        .inner{
+            width:50px;
+            border:1px solid #f00;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="inner">1</div>
+    <div class="inner" style="width:100px;">2</div>
+    <div class="inner">3</div>
+    <div class="inner">4</div>
+    <div class="inner">5</div>
+</div>
+</body>
+</html>

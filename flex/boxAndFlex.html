@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display:box实现简单的横向滚动效果</title>
+    <style>
+        #wrap{
+            display: -moz-box;
+            display: -webkit-box;
+            display:flex;
+            height:300px;
+            overflow:auto;
+            border:1px solid #f00;
+        }
+        .div{
+            width:400px;
+            text-align:center;
+            border-right:1px solid #fff;
+            background:#000;
+            font-size:30px;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<!--
+   dispaly:box是2009年的语法，而display:flex是2012年的语法，也是以后的标准语法，大部分浏览器已经实现了无前缀版本。
+   使用display:box时是需要加上前缀的。例如：display:-webkit-box；-webkit-box-flex: 1
+   在表现上也是有差异的：
+   如果设置了display:flex；同时设置子元素一个固定的宽度，并且说子元素共同的宽度加起来超过了父元素，那么，子元素的宽度是不起作用的的，它们平均分配父元素的宽度；
+   而设置了display:-webkit-box的话不会出现这样的情况，此时如果再加上overflow:auto,父元素的宽度会被撑大到包裹所有的子元素，就可实现简单的横向滚动的效果。
+   chrome版本：66
+-->
+    <div id="wrap">
+        <div class="div">1</div>
+        <div class="div">2</div>
+        <div class="div">3</div>
+        <div class="div">4</div>
+    </div>
+<script>
+</script>
+</body>
+</html>
