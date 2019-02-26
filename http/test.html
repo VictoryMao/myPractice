@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+//        var xhr = new XMLHttpRequest()
+//        xhr.open('GET', 'http://127.0.0.1:8887/')
+//        xhr.send()
+        fetch('http://localhost:8887/', {
+            method: 'PUT',
+            headers: {
+                'X-Test-Cors': '123'
+            }
+        })
+//      CORS预请求
+//      跨域时默认允许的方法只有：get、post、head, 其他的方法默认是不不允许的，浏览器需要一个预请求的方式去验证
+//      允许Content-Type 也有限制：除了text/plain、multipart/form-data、application/x-www-form-urlencoded这三种，其他的Content-Type都需要预请求验证才能进行发送
+//      请求头限制：除了自定义的请求头默认不允许以外，还有其他的也不被允许，自行百度，记不住
+//      如果要突破跨域限制，必须在服务端设置一些东西去允许验证通过
+    </script>
+    <!--<script src="http://127.0.0.1:8887"></script>-->       <!--jsonp跨域-->
+    <script src="/script.js"></script>
+</body>
+</html>

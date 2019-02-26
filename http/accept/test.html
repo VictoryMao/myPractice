@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/" id="form" method="post" enctype="multipart/form-data">   <!--代表我们的情求有多个部分，上传文件时，必须把文件那部分拆出来，文件是不能作为字符串传输的，它要作为二进制传输-->
+        <input name="name"/>
+        <input name="password"/>
+        <input type="file" name="file"/>  <!--表单跳转后以及上传文件后，form data看不到了，用ajax、fetch可以看到-->
+        <input type="submit"/>
+    </form>
+    <script>
+        var form = document.querySelector('#form')
+        form.addEventListener('submit', function(e) {
+            e.preventDefault()
+            var formData =  new FormData(form)
+            fetch('/form',{
+                method: 'POST',
+                body: formData
+            })
+        })
+    </script>
+</body>
+</html>--

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://code.jquery.com/; form-action 'self'; report-uri /report; http: https:" />-->
+    <title>Content-Security-Policy</title>
+</head>
+<body>
+    <div>This is content</div>
+    <form action="https://www.baidu.com">
+        <button type="submit">click me</button>
+    </form>
+    <img src="https://api.nongbotech.cn/Public/img/user/20181220/122c447693.jpeg"/>
+    <script>  //   在html里直接写的脚本，inline srcipt
+        console.log('inline js')   //  xss攻击：通过在网站里注入一些别人写的东西导致我们的网站出现问题甚至是窃取用户信息
+        fetch('https://www.baidu.com')
+    </script>
+    <script src="/test.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</body>
+</html>
