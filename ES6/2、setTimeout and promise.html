@@ -1,0 +1,42 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>setTimeout and promise</title>
+    </head>
+    <body>
+        <script>
+            setTimeout(() => {
+                console.log(1)
+                new Promise((resolve) => {
+                    console.log(2)
+                    resolve()
+                }).then(() => {
+                    console.log(3)
+                })
+                new Promise((resolve) => {
+                    console.log(4)
+                    resolve()
+                }).then(() => {
+                    console.log(5)
+                })
+            })
+            setTimeout(() => {
+                new Promise((resolve) => {
+                    console.log(6)
+                    resolve()
+                }).then(() => {
+                    console.log(7)
+                })
+            })
+            new Promise((resolve, reject) => {
+                console.log(8)
+                reject(10)
+            }).then(() => {
+                console.log(9)
+            }, (num) => {
+                console.log(num)
+            })
+        </script>
+    </body>
+</html>

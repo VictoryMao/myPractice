@@ -1,0 +1,42 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>class的基本用法</title>
+    </head>
+    <body>
+        <script>
+            <!--传统ES5方法-->
+//            function Point(x, y) {
+//                this.x = x;
+//                this.y = y;
+//            }
+//
+//            Point.prototype.toString = function () {
+//                return '(' + this.x + ', ' + this.y + ')';
+//            };
+//
+//            var p = new Point(1, 2);
+
+
+
+
+//            通过class关键字，可以定义类。
+//            基本上，ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。
+
+              class Point {                             //   定义了一个类
+                constructor (x, y) {                    //   构造方法，对应ES5的Point 方法
+                    this.x = x;
+                    this.y = y
+                }
+
+                toString() {                            //    定义“类”的方法的时候，前面不需要加上function这个关键字,类的所有方法都定义在类的prototype属性上面。
+                    return '(' + this.x + ', ' + this.y + ')';
+                }
+              }
+              console.log(typeof Point)     //    function
+              let point1 = new Point(1,2)
+              console.log(point1)
+        </script>
+    </body>
+</html>

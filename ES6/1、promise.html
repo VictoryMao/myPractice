@@ -1,0 +1,61 @@
+<!Doctype html>
+<head>
+    <meta charset = 'utf-8' />
+    <title>学会promise</title>
+</head>
+<body>
+    <script>
+        function runAsync1() {
+            let p = new Promise((resolve, reject) => {     //   promise的构造函数接收一个函数参数：并且该函数接收2个参数：resolve, reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的
+                //   回调函数。
+                setTimeout(() => {
+//                    console.log('执行完成')
+                    resolve('随便什么数据1')
+                })
+            }, 1000)
+            return p
+        }
+        function runAsync2() {
+            let p = new Promise((resolve, reject) => {     //   promise的构造函数接收一个函数参数：并且该函数接收2个参数：resolve, reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的
+                //   回调函数。
+                setTimeout(() => {
+//                    console.log('执行完成')
+                    resolve('随便什么数据2')
+                })
+            }, 1000)
+            return p
+        }
+        function runAsync3() {
+            let p = new Promise((resolve, reject) => {     //   promise的构造函数接收一个函数参数：并且该函数接收2个参数：resolve, reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的
+                //   回调函数。
+                setTimeout(() => {
+//                    console.log('执行完成')
+                    resolve('随便什么数据3')
+                })
+            }, 1000)
+            return p
+        }
+        function runAsync4() {
+            let p = new Promise((resolve, reject) => {     //   promise的构造函数接收一个函数参数：并且该函数接收2个参数：resolve, reject，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的
+                //   回调函数。
+                setTimeout(() => {
+//                    console.log('执行完成')
+                    resolve('随便什么数据4')
+                })
+            }, 1000)
+            return p
+        }
+       runAsync1().then((data) => {
+           console.log(data)
+           return runAsync2()
+       }).then((data) => {
+           console.log(data)
+           return runAsync3()
+       }).then((data) => {
+           console.log(data)
+           return runAsync4()
+       }).then((data) => {
+           console.log(data)
+       })
+    </script>
+</body>
