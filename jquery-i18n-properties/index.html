@@ -1,0 +1,30 @@
+<Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>jquery-i18n-properties实现多语言</title>
+    </head>
+    <body>
+        <label data-locale="username"></label><input type="text"/>
+        <label data-locale="password"></label><input type="password"/>
+        <script src="plugins/jquery-1.8.3.min.js"></script>
+        <script src="plugins/jquery.i18n.properties.js"></script>
+        <script>
+            loadProperties();
+            function loadProperties () {
+                $.i18n.properties({
+                    name: 'main',               //   属性文件名,  命名格式： 文件名_国家代码.properties
+                    path: 'language/main',      //   属性文件所在文件夹
+                    mode: 'map',
+                    language: 'zh',             //   这就是国家代号   name+language刚好组成属性文件名：main+zh -> main_zh.properties
+                    callback: function () {
+                        $('[data-locale]').each(function () {
+                            console.log($(this), $(this).data('locale'))
+                            $(this).html($.i18n.prop($(this).data('locale')))
+                        })
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>
