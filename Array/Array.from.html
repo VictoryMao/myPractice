@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array.from</title>
+</head>
+<body>
+<script>
+    //   Array.from.html(arrayLike[, mapFn[, thisArg]])  es6新增的数组方法   用于将一个类数组或可迭代对象中创建一个新的数组实例
+    //   arrayLike:一个array-like对象或者可迭代对象转换为数组对象。
+    //   mapFn：可选参数，在数组的每个元素上面调用该方法
+    //   thisArg：可选参数，作用mapFn执行的时候的this对象（即上下文环境）
+    function f () {
+        return Array.from(arguments)
+    }
+    console.log(f('123'))
+    console.log(f(1,2,3))
+    console.log(Array.from([1,2,3], x => 2*x))
+    console.log(Array.from({length: 5}, v => 1))
+</script>
+</body>
+</html>
