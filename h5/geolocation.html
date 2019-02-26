@@ -1,0 +1,20 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>地理位置api的使用</title>
+    </head>
+    <body>
+        <script>
+            if (navigator.geolocation) {
+                console.log('alalala')
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    console.log('lalalal')
+                    console.log(position)
+                }, function (error) {
+                    console.log(error)
+                })
+            }
+        </script>
+    </body>
+</html>
