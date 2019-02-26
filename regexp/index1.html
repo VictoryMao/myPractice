@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>正则抓取图片实操</title>
+    <style>
+        img{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+<script src="../jquery.min.js"></script>
+<script>
+    $.post('./data.txt', function (data, status) {      //  $.get和$.post是对ajax高级的封装，接收4个参数，url(必选),params,请求成功的回调函数，dataType(规定预期服务器响应的数据类型)
+        console.log(data.match(/<img.+?src=['"]?.+?['"]?.*?[\/]?>/gi))
+    }, 'text')
+    $.ajax({url: './data.txt', success: function (data) {    //    $.ajax是对ajax低级的封装，接收一个obj参数，obj的属性可以是url, params, success等等
+        console.log(data.match(/<img.+?src=['"]?.+?['"]?.*?[\/]?>/gi))
+    }})
+</script>
+</body>
+</html>

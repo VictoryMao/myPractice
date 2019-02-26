@@ -1,0 +1,110 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>match</title>
+    </head>
+    <body>
+        <script>
+            let str = 'hello world'
+            console.info(str.match(/a/))       //null         string.match(/表达式/)方法，找不到返回的是null
+            console.info(str.match(/l/))       //[l]          string.match(/表达式/)方法，找得到返回的是一个数组
+            console.info(str.match(/L/))       //null         string.match(/表达式/)方法，默认正则区分大小写
+
+
+
+            //   i,g,m 称为正则标记符，  i: 不区分大小写，  g: 全局匹配    m: 多行
+            console.info(str.match(/L/i))      //[l]
+            console.info(str.match(/L/ig))      //["l", "l", "l"]
+
+
+
+            //   能够匹配多个字符中的其中一个匹配符：\d: 0~9     \w: 字符、数字、下划线     .: 除了\n的所有字符  （\d,\w,.都只能匹配一个)
+            let str1 = 'hello 2018'
+            console.log(str1.match(/\d/))      //  [2]
+            console.log(str1.match(/\d/g))     //  [2,0,1,8]
+
+            console.log(str1.match(/\w/))      //  [h]
+            console.log(str1.match(/\w/g))     //  [h,e,l,l,o,2,0,1,8]
+
+            console.log(str1.match(/./))       //  [h]
+            console.log(str1.match(/./g))       //  [h,e,l,l,o, ,2,0,1,8]
+
+            console.log(str1.match(/\d\w./))    //  [201]
+            console.log(str1.match(/\w\d./))    //  [201]
+            console.log(str1.match(/\w.\d/g))    //  ['0 2', '018']
+
+
+
+
+            //   能够自定义规则的匹配符 [], [^] 代表取反
+
+            //   匹配手机号前3位
+            console.log('158'.match(/1[3589]\d/g))    //  [158]
+            console.log('1,8'.match(/1[3,5,8,9]\d/g))    //  [1,8]     //   ,也是符合条件的
+            console.log('138'.match(/1[^3589]\d/g))      //  null
+            console.log('128'.match(/1[^3589]\d/g))      //  [128]
+
+
+
+            //   用来修饰次数的匹配符   {n}: 代表前面的匹配符出现n次     {n, m} 出现次数n~m之间    {n, } n~max
+            //                         +: 1~max                      ?: 0~1                 *： 0~max
+            console.log('18842687472'.match(/1[3589]\d{9}/))    //    ['18842687472']
+            console.log('188'.match(/1[3589]\d{7,9}/))          //      null
+            console.log('188888888'.match(/1[3589]\d{7,}/))          //     ['188888888']
+            console.log('18'.match(/1[3589]\d+/))          //      null
+            console.log('18'.match(/1[3589]\d?/))          //     ['18']
+            console.log('188888888'.match(/1[3589]\d?/))          //     ['188']
+            console.log('188888888'.match(/1[3589]\d*/))          //     ['188888888']
+
+
+
+            //   正则表达式的完整匹配      ^:  []中^代表取反，但是在外面表示的是一开始匹配    $: 持续匹配到结束
+            console.log('**18842687472'.match(/1[3589]\d{9}/))    //    ['18842687472']
+            console.log('**18842687472'.match(/^1[3589]\d{9}/))    //    null
+            console.log('18842687472191919191'.match(/^1[3589]\d{9}/))    //  ['18842687472']
+            console.log('18842687472'.match(/^1[3589]\d{9}$/))    //  ['18842687472']
+            console.log('18842687472222'.match(/^1[3589]\d{9}$/))    //  null
+
+
+
+            //   特殊符号如何匹配，在正则中： ^,$,., \ [] 这些符号在匹配的时候需要加上转义符 \
+            console.log('158'.match(/./))    //   [1]
+            console.log('158'.match(/\./))    //   null
+            console.log('.158'.match(/\./))    //   [.]
+            console.log('1.58'.match(/^\./))    //   null
+            console.log('^.58'.match(/\^\./))    //   ['^.']
+            console.log('^.[]58'.match(/\^\.\[\]/))    //   ['^.[]']
+
+
+
+            //   条件分支    |
+            //              (): 1、括号中的内容， 成为一个独立的整体  2、括号的内容可以进行分组，单独匹配，不需要此功能则（?:)，如果设置了^, $   match()方法分组功能会消失
+            console.log('.png'.match(/\.[png|gif|jpe?g]/))     //  ['.p']
+            console.log('.png'.match(/\.(png|gif|jpe?g)/))     //  ['.png, png']     //     括号里的内容回单独再匹配一次
+            console.log('.png'.match(/\.(?:png|gif|jpe?g)/))   //  ['.png']          //     括号里的内容回单独再匹配一次, 如果不需要的话就加上'?:'
+
+
+
+
+            //   数值的匹配
+            console.log('-12.34E5'.match(/^(-?)(0|[1-9]\d*)(\.\d+)?([eE][-+]?\d+)?$/))
+
+
+
+            //   中文的处理     默认中文采用的是双字节，在计算机中通过ASCII对应表来输入汉字, 来设置中文的范围即可
+            //   escape()可以把字符串转化为ASCII编码      unescape()  可以把编码转化为中文
+            //   escape('一')ASCII 表中第一个中文        escape('龥')  ASCII 表中最后一个中文
+            console.log(escape('一'), escape('龥'))
+            console.log('収叏叐叒叓叕叚叜叝叞叠睿丛'.match(/[\u4E00-\u9FA5]/g))
+
+
+
+            //   贪婪与懒惰
+            //   在正则中默认是贪婪模式（尽可能多的匹配）， 可以在修饰数量的匹配符（* + ？ {})后面添加?  则代表懒惰
+            console.log('aabab'.match(/a.*b/))    //    ['aabab']    //      贪婪模式
+            console.log('aabab'.match(/a.*?b/))   //    ['aab']      //      懒惰模式
+
+        </script>
+    </body>
+</html>

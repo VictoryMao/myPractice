@@ -1,0 +1,36 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>匹配ip</title>
+</head>
+<body>
+<img src="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=3c8d3f44392ac65c67056175c3c9d52c/9f510fb30f2442a7df391e81dd43ad4bd11302da.jpg"/>
+<a href="great.jpg" download="">立即下载</a>
+<!--<script>-->
+    <!--var emails = "100000000@qq.com, 2000000@163.com, 2000000@qq.com"-->
+    <!--//   默认情况下，如果是全局匹配的模式下(g),是不支持分组的， 而且一般g与^ $是互斥的-->
+    <!--console.log(emails.match(/(\d+)@qq.com/))    //[1000000000@qq.com, 1000000000]   由于分组会单独再匹配一次，所有可以得到100000000-->
+    <!--console.log(emails.match(/(\d+)@qq.com/g))    //[1000000000@qq.com, 2000000@qq.com]   只得到了邮箱，并没有得到qq号码-->
+
+
+
+    <!--//   RegExp: exec 支持全局+分组功能, 默认每次只查找一个-->
+    <!--var RegExp = new RegExp(/(\d+)@qq.com/g)-->
+    <!--console.log(RegExp.exec(emails))-->
+
+    <!--//   当匹配成功下一次继续执行索引值会存储到lastIndex中-->
+    <!--console.log(RegExp.lastIndex)-->
+    <!--console.log(RegExp.exec(emails))-->
+    <!--console.log(RegExp.lastIndex)-->
+    <!--while(temp = RegExp.exec(emails)) {-->
+        <!--console.log(temp[0] + ',' + temp[1])-->
+    <!--}-->
+
+
+    <!--//   test: 一般用于表单验证，如果匹配成功返回true，否则返回false-->
+    <!--var regExp = new RegExp(/^1[3589]\d{9}$/)-->
+    <!--console.log(regExp.test('18842687472'))-->
+<!--</script>-->
+</body>
+</html>

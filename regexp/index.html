@@ -1,0 +1,32 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>正则抓取图片</title>
+        <style>
+            img{
+                width:200px;
+            }
+        </style>
+    </head>
+    <body>
+        几种显示图片的方式：
+        <ul>
+            <li><img src="great.jpg" /></li>
+            <li><img src="great.jpg" alt="prompt" class="cla"/></li>
+            <li><IMG alt="prompt" Src=great.jpg></li>
+        </ul>
+        <script>
+            var img1 = "图片1:<img src='great.png'/>"
+            console.log(img1.match(/<img\ssrc='.+'\/>/))
+            var img2 = "<img alt='prompt' src=\"great.jpg\"  class='cla'>"
+            console.log(img2.match(/<img.+src=['"].+['"].+\/?>/))
+            console.log(img1.match(/<img.+src=['"].+['"].+\/?>/))
+            var img3 = "<IMG alt=\"prompt\" Src=great.jpg>"
+            console.log(img3.match(/<img.+src=['"]?.+['"]?.*?\/?>/i))
+            var img4 = "<img src=\"great.jpg\" /><img src=\"great.jpg\" alt=\"prompt\" class=\"cla\"/><IMG alt=\"prompt\" Src=great.jpg>"
+            console.log(img4.match(/<img.+src=['"]?.+['"]?.?\/?>/gi))    //   贪婪模式
+            console.log(img4.match(/<img.+?src=['"]?.+?['"]?.*?[\/]?>/gi))    //   懒惰模式
+        </script>
+    </body>
+</html>
