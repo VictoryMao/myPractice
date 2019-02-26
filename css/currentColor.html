@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3新增属性：currentColor</title>
+    <style>
+        .icon {
+            display: inline-block;
+            width: 100px;
+            height:100px;
+            background-image: url(images/sprite_icons.png);
+            background-color: currentColor; /* 该颜色控制图标的颜色 */
+            border:10px solid;
+        }
+        .link:hover { color: #333; }/* 虽然改变的是文字颜色，但是图标颜色也一起变化了 */
+    </style>
+</head>
+<body>
+    <!--currentColor表示当前的标签所继承的文字颜色， IE9以上才支持-->
+    <!--我还发现ie浏览器和chrome浏览器下a标签的默认字体颜色不一样，虽然都是蓝色-->
+    <a href="#" class="link"><i class="icon icon1"></i>返回</a>
+</body>
+</html>
