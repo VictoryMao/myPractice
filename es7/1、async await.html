@@ -1,0 +1,73 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>async await的简单使用</title>
+    </head>
+    <body>
+        <script>
+            let fn1 = function () {
+                setTimeout(function () {
+                    console.log('fn1 is executed')
+                }, 1000)
+            };
+            let fn2 = function () {
+                setTimeout(function () {
+                    console.log('fn2 is executed')
+                }, 1000)
+            };
+            let fn3 = function () {
+                setTimeout(function () {
+                    console.log('fn3 is executed')
+                }, 1000)
+            };
+//            (function (fn1, fn2, fn3) {    //  按顺序执行，执行完fn1里定时器要执行的函数立马执行fn2里的
+//                fn1()
+//                fn2()
+//                fn3()
+//            })(fn1, fn2, fn3)
+
+            let fn4 = function () {
+                return new Promise(function(resolve, reject) {
+                    setTimeout(function () {
+                        console.log('fn1 is executed')
+                        resolve()
+                    }, 1000)
+                })
+            }
+            let fn5 = function () {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        console.log('fn2 is executed')
+                        resolve()
+                    }, 1000)
+                })
+            }
+            let fn6 = function () {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        console.log('fn3 is executed')
+                        resolve()
+                    }, 1000)
+                })
+            };
+//            console.log((async function (fn4, fn5, fn6) {     //  按顺序执行，每隔1000ms输出一次结果
+//                await fn4();
+//                await fn5();
+//                await fn6();
+//                return 'done1'
+//            })(fn4, fn5, fn6).then(res => {
+//                console.log(res)
+//            }))
+
+            console.log( (async function (fn1, fn2, fn3) {      //   不论怎样，async方法返回的总是一个promise
+                await fn1();
+                await fn2();
+                await fn3();
+                return 'done'            //    立马执行
+            })(fn1, fn2, fn3).then(res => {
+                console.log(res)
+            }))
+        </script>
+    </body>
+</html>

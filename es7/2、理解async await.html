@@ -1,0 +1,92 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>理解async await</title>
+</head>
+<body>
+<script>
+    //   async顾名思义是'异步'的意思，async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果
+    //   通常async、await都是跟随Promise一起使用的。为什么这么说呢？因为async返回的都是一个Promise对象同时async适用于任何类型的函数上。这样await得到的就是一个Promise对象(如果不是Promise对象的话那async返回的是什么 就是什么)；
+
+
+//       console.log((async function () {})())    //   返回的是一个promise对象
+
+
+
+//
+//        (async function () {       //表示函数里有异步操作
+//            return 1               //相当于是返回异步操作的结果
+//        })().then(res => {
+//            console.log(res)       //   1
+//        })
+
+
+
+
+//        async function testSync () {
+//            const response = await new Promise(resolve => {
+////                setTimeout(() => {
+//                    resolve('async await test...')
+////                }, 1000)
+//            })
+//            console.log(response)
+////            return 1
+//            return response
+//        }
+//        testSync()     //    async await test...
+//        testSync().then(res => {
+//            console.log(res)      //     async await test...
+//        })
+
+
+
+
+//    async、await串行处理：等待前面一个await执行后接着执行下一个await，以此类推
+//    async function asyncAwaitFn(str) {
+//         await (async function () {
+//             console.log(1)
+//             await new Promise((resolve, reject) => {
+//                 setTimeout(() => {
+//                     resolve(str)
+//                     console.log(88888888)
+//                 }, 1000);
+//             })
+//             console.log(2)
+//         })()
+//    }
+
+    async function asyncAwaitFn(str) {
+         (async function () {     //    在这里有没有await 执行结果是有区别的
+             console.log(1)
+             await new Promise((resolve, reject) => {
+                 setTimeout(() => {
+                     resolve(str)
+                     console.log(str)
+                 }, 1000);
+             })
+             console.log(2)
+         })()
+    }
+    const serialFn = async () => { //串行执行
+        await asyncAwaitFn('string 1')
+        await asyncAwaitFn('string 2')
+        console.log(3)
+    }
+    serialFn()
+
+
+
+    //    并行：将多个promise直接发起请求（先执行async所在函数），然后再进行await操作。
+//    const parallel = async () => {    //  并行执行
+//        console.time('parallel')
+//        const parallelOne = asyncAwaitFn('string 1')
+//        const parallelTwo = asyncAwaitFn('string 2')
+//        console.log(await parallelOne)
+//        console.log(await parallelTwo)
+//        console.timeEnd('parallel')
+//    }
+//    parallel()     //     string1  string2    parallel: 1004.139892578125ms
+</script>
+</body>
+</html>
