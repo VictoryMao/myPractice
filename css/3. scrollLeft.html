@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>忘了scrollLeft属性怎么设置了</title>
+    <style>
+        #father{
+            width:500px;
+            height:300px;
+            border:1px solid #ccc;
+            overflow:auto;
+        }
+        #son{
+            white-space:nowrap;
+        }
+    </style>
+</head>
+<body>
+<!--IE9+  有效-->
+<div id="father">
+    <div id="son"> 旧屋，是指我出生并生活到将近十岁离开的屋子，地处浙江慈溪桥头镇车头村一个叫高地地的宅落里。从我出生到离开，桥头镇都属余姚县，好像是一九七九年划入慈溪的。
+        旧屋所在，是地道的农村，惟一的热闹去处是一华里之外的桥头镇，但那只是一截临河的窄街，一座普通的石桥，几家小小的店铺，每天清晨有一点买卖农产品的集市，走几步就完了。
+        越是无处可去，屋子对人就越是重要。</div>
+</div>
+<script>
+    var father = document.querySelector('#father');
+    var son = document.querySelector('#son');
+
+    // 设置了半天，原来设置的时候是不加单位的
+//    father.scrollLeft = '500px';    //  无效
+    father.scrollLeft = 500;
+
+    console.log(son.offsetWidth);     //  500   实际宽度，包括滚动条等边线
+    console.log(son.clientWidth);     //  500   内容的可视区的宽度，不包括滚动条等边线
+    console.log(son.scrollWidth);     //  2793  实际内容的宽度
+
+    father.scrollLeft = son.scrollWidth / 2   //  滚动中间
+    father.addEventListener('scroll', function (e) {
+        console.log(this.scrollLeft)
+    })
+</script>
+</body>
+</html>
