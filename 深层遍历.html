@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let menu = [
+            {
+                title: '运营管理',
+                key: 'Manage',
+                redirectUrl: '/layout/userManage',
+                icon: 'appstore',
+                children: [
+                    {
+                        path: '/layout/userManage',
+                        title: '用户管理',
+                        key: 'UserManage',
+                        icon: 'setting',
+                        parentKey: ['Manage']
+                    },
+                    {
+                        title: '用户列表',
+                        key: 'UserList',
+                        redirectUrl: '/layout/userList/root',
+                        children: [{
+                            path: '/layout/userList/root',
+                            title: 'root',
+                            key: 'Root',
+                            icon: 'setting',
+                            parentKey: ['Manage', 'UserList']
+                        }]
+                    }
+                    ]
+            },{
+            title: '地图',
+            key: 'Map',
+            redirectUrl: '/layout/map',
+            icon: 'appstore',
+            children: [
+                {
+                    path: '/layout/map',
+                    title: 'GoogleMap',
+                    key: 'GoogleMap',
+                    icon: 'setting',
+                    parentKey: ['Map']
+                }
+                ]
+            }
+        ];
+        function l(data, val) {
+            for(var i=0;i<data.length;i++){
+                if(data[i].path == val){
+                    return [];
+                }
+                if(data[i].children){
+                    console.log(data[i], data[i].children);
+                    var d = l(data[i].children,val);
+//                    console.log(d)
+                    return d.concat(data[i]);
+                }
+            }
+        }
+        console.log(l(menu, '/layout/userManage'));
+    </script>
+</body>
+</html>
