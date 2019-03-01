@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过Array.filter方法把数组里为空的项去掉</title>
+</head>
+<body>
+    <script>
+//      filter 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素
+//      注意： filter() 不会对空数组进行检测
+//      注意： filter() 不会改变原始数组
+        let arr = ['maomaomao', '', '我我我', '是是是', '', '']
+        arr = arr.filter(val => val)
+        console.log(arr)    // ['maomaomao', '我我我', '是是是']
+    </script>
+</body>
+</html>
