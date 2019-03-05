@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import './style.css';
-import TodoItem from './todoitem'
-class TodoList extends Component {
+import TodoItem from './todoitem';
+import Text from './text';
 
+class TodoList extends Component {
     constructor (props) {
         super(props);
         // 组件的状态
+        // 当组件的state或者props发生改变的时候，render函数就会重新执行时，它的子组件的render都将被重新执行
         this.state = {
             inputValue: '',
             list: []
@@ -16,23 +18,25 @@ class TodoList extends Component {
     }
 
     render () {
+        console.log('render');
         return (
             <Fragment>
                 <div>
                     <label htmlFor="insertArea">输入内容</label>
                     <input
-                        id="insertArea"
-                        className="input"
-                        value={this.state.inputValue}
-                        onChange={this.handleInputChange}
-                       />
+                    id="insertArea"
+                    className="input"
+                    value={this.state.inputValue}
+                    onChange={this.handleInputChange}
+                    />
                     <button onClick={this.handleBtnClick}>提交</button>
                 </div>
                 <ul>
                     {
-                        this.getTodoItem()
+                         this.getTodoItem()
                     }
                 </ul>
+                <Text content={this.state.inputValue}></Text>
             </Fragment>
         )
     }
@@ -40,10 +44,10 @@ class TodoList extends Component {
         return (this.state.list.map((item, index) => {
             return (
                 <TodoItem
-                 key={index}
-                 content={item}
-                 index={index}
-                 deleteItem={this.handleItemDelete}
+                key={index}
+                content={item}
+                index={index}
+                deleteItem={this.handleItemDelete}
                 ></TodoItem>
             )
         }))
