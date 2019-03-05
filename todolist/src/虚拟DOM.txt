@@ -43,8 +43,9 @@
 ['div', {id: 'abc'}, ['span', {}, 'bye bye']]
 
 7. 比较原始虚拟DOM和新的虚拟DOM的区别， 找到区别是span中的内容 (极大的提升了性能)
-8. 直接操作DOM， 改变span中的内容
+用到Diff算法， diff算法同层比对虚拟DOM树， 有key值是为了更快的找到新旧dom树相同的节点，其实就是提升diff算法性能
 
+8. 直接操作DOM， 改变span中的内容
 
 JSX -> JS对象 -> 真实的DOM
 
