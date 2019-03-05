@@ -5,8 +5,11 @@ class Text extends Component {
         super(props);
     }
     render () {
-        console.log('text render');
-        return <div>{ this.props.content }</div>
+        // Vue也一样
+        // JSX -> createElement -> 虚拟DOM （JS对象） -> 真实的DOM
+        // return <div><span>item</span></div>
+        // 如果不用JSX语法的话，也可以
+        return React.createElement('div', {}, React.createElement('span', {}, 'item'))
     }
 }
 
