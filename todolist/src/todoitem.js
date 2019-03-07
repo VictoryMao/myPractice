@@ -11,7 +11,15 @@ class TodoItem extends Component {
         const { content, text } = this.props
         return <div onClick={this.handleClick}>{ text } - {content}</div>
     }
-
+    // 当一个组件要从父组件接收了参数， 只要父组件的render函数被重新执行了，子组件的这个生命周期函数就会被执行
+    // 如果这个组件第一次存在于父组件中，不会执行，如果这个组件之前已经存在于父组件中，才会执行， 比如输入1后，再输入2，
+    componentWillReceiveProps () {
+        console.log('child componentWillReceiveProps')
+    }
+    //  当这个组件即将被从页面中剔除的时候
+    componentWillUnmount () {
+        console.log('child componentWillUnmount')
+    }
     handleClick () {
         const { deleteItem, index } = this.props
         deleteItem(index)
