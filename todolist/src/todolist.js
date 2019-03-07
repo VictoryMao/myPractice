@@ -28,10 +28,11 @@ class TodoList extends Component {
                     className="input"
                     value={this.state.inputValue}
                     onChange={this.handleInputChange}
+                    ref={(input) => {this.input = input}}
                     />
                     <button onClick={this.handleBtnClick}>提交</button>
                 </div>
-                <ul>
+                <ul ref={(ul) => {this.ul = ul}}>
                     {
                          this.getTodoItem()
                     }
@@ -54,7 +55,10 @@ class TodoList extends Component {
     }
 
     handleInputChange (e) {
-        const value = e.target.value;
+        // const value = e.target.value;
+        // this.input就是input DOM节点
+        console.log(this)
+        const value = this.input.value
         this.setState(() => ({
                 inputValue: value
             })
@@ -64,7 +68,10 @@ class TodoList extends Component {
         this.setState((prevState) => ({
             list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        }))
+        }), () => { //  setState接收的第一个方法执行完成后执行
+            console.log(this.ul.querySelectorAll('div').length);
+        })
+        console.log(this.ul.querySelectorAll('div').length);  //  setState接收的第一个方法是异步的，
     }
 
     handleItemDelete (index) {
