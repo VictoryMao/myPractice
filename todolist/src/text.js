@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class Text extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     render () {
         // Vue也一样
         // JSX -> createElement -> 虚拟DOM （JS对象） -> 真实的DOM

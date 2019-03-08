@@ -20,6 +20,13 @@ class TodoItem extends Component {
     componentWillUnmount () {
         console.log('child componentWillUnmount')
     }
+    showComponentUpdate (nextProps, nextState) {
+        if (nextProps.content !== this.props.content) {   //  提升性能，避免组件做无谓的render
+            return true
+        } else {
+            return false
+        }
+    }
     handleClick () {
         const { deleteItem, index } = this.props
         deleteItem(index)

@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import './style.css';
 import TodoItem from './todoitem';
 import Text from './text';
+import axios from 'axios';
+
 // 生命周期函数：在某一时刻组件会自动调用
 class TodoList extends Component {
     constructor (props) {
@@ -16,7 +18,6 @@ class TodoList extends Component {
         this.handleBtnClick = this.handleBtnClick.bind(this);
         this.handleItemDelete = this.handleItemDelete.bind(this);
     }
-
     // 在组件即将被挂载到页面的时候自动执行
     componentWillMount () {
         console.log('componentWillMount')
@@ -24,6 +25,11 @@ class TodoList extends Component {
     // 组件被挂载到页面后被自动执行
     componentDidMount () {
         console.log('componentDidMount')
+        axios.get('/api/todolist').then(res => {
+            console.log(res)
+        }).catch(error => {
+            console.log(error)
+        })
     }
     // 组件被更新之前，他会自动被执行
     shouldComponentUpdate () {
@@ -34,7 +40,7 @@ class TodoList extends Component {
     componentWillUpdate () {
         console.log('componentWillUpdate')
     }
-    //  组件更新完成之后，会执行
+    //  组件更新完成之后，会执行, 只执行一次
     componentDidUpdate () {
         console.log('componentDidUpdate')
     }
