@@ -25,7 +25,7 @@ class TodoList extends Component {
     // 组件被挂载到页面后被自动执行
     componentDidMount () {
         console.log('componentDidMount')
-        axios.get('/api/todolist').then(res => {
+        axios.get('../api/data.json').then(res => {
             console.log(res)
         }).catch(error => {
             console.log(error)
@@ -76,6 +76,7 @@ class TodoList extends Component {
             </Fragment>
         )
     }
+
     getTodoItem () {
         return (this.state.list.map((item, index) => {
             return (
@@ -98,6 +99,7 @@ class TodoList extends Component {
             })
         )
     }
+
     handleBtnClick () {
         this.setState((prevState) => ({
             list: [...prevState.list, prevState.inputValue],
