@@ -1,6 +1,7 @@
 var path = require('path');
 
 module.exports = {
+    // entry: ['babel-polyfill', './src/person.js'],
     entry: './src/person.js',
     output: {
         path: path.resolve(__dirname, 'lib'),
