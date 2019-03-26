@@ -1,0 +1,18 @@
+//  babel src -d lib  是说把src目录里的代码转义到lib目录
+
+//  type nul>.babelrc   创建该文件名为空的.babelrc文件
+//  presets用于配置我们所需要的转义器
+//  如果没有.babelrc文件，或者没有在其他文件中设置过babel的presets的配置选型，并且命令行中也没有配置--presets，那么代码是不会转译的。原es6代码什么样，转译后的代码还是什么样。
+//  如果你的.babelrc或者你的命令行使用了你没有安装的转译器（presets），代码就会报错
+//  但.babelrc中的配置跟你在命令行中使用的配置冲突的时候，以.babelrc中的配置为准
+//  如果不想生成.babelrc文件，也可以在package.json文件里配置
+//      babel":{
+//         babel选项
+//         "presets":["es2015"],
+//         "comments":false
+//      },
+
+{
+  "presets": ["env"],
+  "ignore": ["foo.js"]
+}
