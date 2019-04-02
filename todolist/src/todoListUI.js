@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Input, Button, List } from 'antd';
 
 //  无状态组件， 性能较高
