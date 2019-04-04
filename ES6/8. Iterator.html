@@ -1,0 +1,60 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Iterator（遍历器）</title>
+    </head>
+    <script>
+        /*
+            js表示集合的数据结构：Array、Object、Map、Set
+            Iterator: 是一种接口，为各种不同的数据结构提供统一的访问机制，即for...of循环
+            一种数据结构只要部署了 Iterator 接口，我们就称这种数据结构是“可遍历的”（iterable）。
+            遍历器对象的根本特征就是有next方法
+        * */
+        function makeIterator(array) {
+            var nextIndex = 0;
+            return {
+                next: function () {
+                    return nextIndex < array.length ?
+                        {value: array[nextIndex++], done: false} : {value: undefined, done: true}
+                }
+            }
+        }
+        var it = makeIterator(['a', 'b']);
+        it.next();  //  {value: 'a', done: false}
+        it.next();  //  {value: 'b', done: false}
+        it.next();  //  {value: undefined, done: true}
+
+
+        /*  如果数据结构原生具备 Iterator 接口（比如数组），就可以被for...of遍历循环，
+            原因在于，这些数据结构原生部署了Symbol.iterator属性(遍历器生成函数，执行，就会返回一个有next方法的遍历器对象）
+        */
+
+
+
+
+        const obj = {
+            [Symbol.iterator] : function () {
+                return {
+                    next: function () {
+                        return {
+                            value: 1,
+                            done: true
+                        };
+                    }
+                };
+            }
+        };
+        //  此时，obj是iterable
+
+
+
+        let arr = ['a', 'b', 'c'];
+        let iter = arr[Symbol.iterator]();
+        iter.next() // { value: 'a', done: false }
+        iter.next() // { value: 'b', done: false }
+        iter.next() // { value: 'c', done: false }
+        iter.next() // { value: undefined, done: true }
+
+    </script>
+</html>
