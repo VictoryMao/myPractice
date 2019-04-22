@@ -11,7 +11,7 @@ function* mySaga() {
 function* getInitList() {
     try {
         const res = yield axios.get('https://www.easy-mock.com/mock/5ca1b065e81534559ae87ead/test/getTodoList');
-        const action = getInitListAction(res);
+        const action = getInitListAction(res.data.data.list);
         yield put(action);
     } catch(e) {
         console.log('failed')
