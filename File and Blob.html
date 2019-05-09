@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>file 和 blob对象</title>
+    </head>
+    <body>
+        <input type="file" id="file" value="file" onchange="dealImg()"/>
+        <script>
+            // 语法 var myFile = new File(bits, name[, options]);   bits: ArrayBuffer, Blob 或者DOMString对象构成的Array, 文件名,  选项对象(包括文件的可选属性) 
+            let blob = new Blob(['a'])
+            let file = new File([`${blob}`], 'file.txt')
+            let blob1 = new Blob([`${file}`], {type: 'text/html'})
+            
+            // file和blob对象可以互传
+            
+            function dealImg () {
+                let file = document.querySelector('#file').files[0]
+                
+                // objectURL = URL.createObjectURL(blob)
+                /*  URL.createObjectURL() 静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的URL。
+                    这个 URL 的生命周期和创建它的窗口中的 document 绑定。这个新的URL 对象表示指定的 File 对象或 Blob 对象。
+                */
+                
+                let blobUrl = URL.createObjectURL(new Blob([file])) 
+                let blobUrl = URL.createObjectURL(file)      //  效果一样
+
+                let img = new Image()
+                img.src = blobUrl
+                img.onload = function () {
+                    document.body.appendChild(img)
+                }
+            }
+        </script>
+    </body>
+</html>
